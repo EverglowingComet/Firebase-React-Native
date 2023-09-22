@@ -1,5 +1,8 @@
 import { userServices } from "store/services";
-const { setUser, setLogginIn } = require("store/user");
+import { 
+    setUser, 
+    setLogginIn 
+} from "store/reducers/user";
 
 export const userActions = {
     checkAuth,

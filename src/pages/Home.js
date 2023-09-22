@@ -13,7 +13,7 @@ export default function Home() {
         <Button
           title="Go"
           onPress={e=> {
-          navigation.navigate("StackB")
+          navigation.navigate("/location")
         }}/>
       </View>
       <StatusBar style="auto" />

@@ -2,10 +2,12 @@ import { Provider } from "react-redux";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import Home from "./src/pages/Home";
-import LocationList from "./src/pages/location/LocationList";
-import LocationTracking from "./src/pages/location/LocationTracking";
-import store from "./src/store";
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import Entypo from 'react-native-vector-icons/Entypo';
+import Home from "pages/Home";
+import LocationList from "pages/location/LocationList";
+import LocationTracking from "pages/location/LocationTracking";
+import store from "store";
 
 const Stack = createNativeStackNavigator();
 const Tabs = createBottomTabNavigator();
@@ -24,17 +26,24 @@ const HomeTabsDrawer = () => {
   return (
     <Tabs.Navigator>
       <Tabs.Screen
-        name="LocationTab"
+        name="/location"
         component={LocationStackNavigator}
         options={{
           title: "Location",
+          tabBarIcon: ({ color, size }) => (
+            <Entypo name="location" color={color} size={size} />
+          ),
+          headerShown: true,
           headerShown: false,
         }} />
       <Tabs.Screen
-        name="GalleryTab"
+        name="/gallery"
         component={Home}
         options={{
           title: "Gallery",
+          tabBarIcon: ({ color, size }) => (
+            <MaterialIcons name="photo" color={color} size={size} />
+          ),
           headerShown: true,
         }} />
     </Tabs.Navigator>
@@ -43,16 +52,15 @@ const HomeTabsDrawer = () => {
 
 const LocationStackNavigator = () => {
   return (
-    <Stack.Navigator initialRouteName="LocationList">
+    <Stack.Navigator initialRouteName="/location/list">
       <Stack.Screen
-        name="LocationList"
+        name="/location/list"
         component={LocationList}
         options={{
           title: "Locations",
-          headerShown: true,
         }} />
       <Stack.Screen
-        name="LocationTracking"
+        name="/location/tracking"
         component={LocationTracking}
         options={{
           title: "Location Track",
