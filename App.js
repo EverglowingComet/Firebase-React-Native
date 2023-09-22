@@ -1,74 +1,61 @@
+import { Provider } from "react-redux";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { createDrawerNavigator } from "@react-navigation/drawer";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Home from "./src/pages/Home";
+import LocationList from "./src/pages/location/LocationList";
+import LocationTracking from "./src/pages/location/LocationTracking";
+import store from "./src/store";
 
 const Stack = createNativeStackNavigator();
 const Tabs = createBottomTabNavigator();
-const Drawer = createDrawerNavigator();
 
 export default function App() {
   return (
-    <NavigationContainer>
-      <Drawer.Navigator>
-        <Drawer.Group>
-          <Drawer.Screen
-            name="FHome"
-            component={TabsDrawer}
-            options={{
-              title: "Welcome",
-              headerShown: false,
-            }} />
-          <Drawer.Screen
-            name="GHome"
-            component={Home}
-            options={{
-              title: "Drawer",
-              headerShown: false,
-            }} />
-        </Drawer.Group>
-      </Drawer.Navigator>
-    </NavigationContainer>
+    <Provider store={store}>
+      <NavigationContainer>
+        {HomeTabsDrawer()}
+      </NavigationContainer>
+    </Provider>
   );
 }
 
-const TabsDrawer = () => {
+const HomeTabsDrawer = () => {
   return (
     <Tabs.Navigator>
       <Tabs.Screen
-        name="TabA"
-        component={StackDrawer}
+        name="LocationTab"
+        component={LocationStackNavigator}
         options={{
-          title: "Tab A",
+          title: "Location",
           headerShown: false,
         }} />
       <Tabs.Screen
-        name="TabB"
+        name="GalleryTab"
         component={Home}
         options={{
-          title: "Tab B",
-          headerShown: false,
+          title: "Gallery",
+          headerShown: true,
         }} />
     </Tabs.Navigator>
   )
 }
 
-const StackDrawer = () => {
+const LocationStackNavigator = () => {
   return (
-    <Stack.Navigator initialRouteName="StackA">
+    <Stack.Navigator initialRouteName="LocationList">
       <Stack.Screen
-        name="StackA"
-        component={Home}
+        name="LocationList"
+        component={LocationList}
         options={{
-          title: "Stack A",
+          title: "Locations",
           headerShown: true,
         }} />
       <Stack.Screen
-        name="StackB"
-        component={Home}
+        name="LocationTracking"
+        component={LocationTracking}
         options={{
-          title: "Stack B",
+          title: "Location Track",
           headerShown: true,
         }} />
     </Stack.Navigator>

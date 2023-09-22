@@ -15,9 +15,25 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "infoPlist": {
+        "NSLocationAlwaysAndWhenInUseUsageDescription" : "Location is used to track your movements.",
+        "NSLocationAlwaysUsageDescription" : "Location is used to track your movements.",
+        "NSLocationWhenInUseUsageDescription" : "Location is used to track your movements.",
+        "UIBackgroundModes" : [
+          "fetch",
+          "remote-notification",
+          "location"
+        ]
+      }
     },
     "android": {
+      "package": "com.comet.firebase.rntest",
+      "permissions": [
+        "android.permission.ACCESS_FINE_LOCATION",
+        "android.permission.ACCESS_BACKGROUND_LOCATION",
+        "android.permission.ACCESS_BACKGROUND_LOCATION"
+      ],
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
@@ -25,6 +41,11 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "0654a246-9090-44e6-9751-6a6f6869682f"
+      }
     }
   }
 }
